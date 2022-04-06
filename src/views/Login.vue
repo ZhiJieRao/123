@@ -7,12 +7,15 @@
       </div>
       <!-- 注册区域 -->
       <el-form class="login_nav" :model="loginForm" :rules="rules" ref="loginForm">
+        <!-- 用户名 -->
         <el-form-item prop="username">
           <el-input prefix-icon="el-icon-user-solid" v-model="loginForm.username"></el-input>
         </el-form-item>
+        <!-- 密码 -->
         <el-form-item prop="password">
           <el-input prefix-icon="iconfont icon-lock_fill" v-model="loginForm.password" show-password></el-input>
         </el-form-item>
+        <!-- 登录、重置 -->
         <el-form-item class="login_btn">
           <el-button type="primary" @click="login">登录</el-button>
           <el-button type="info" @click="resetForm('loginForm')">重置</el-button>
@@ -48,11 +51,12 @@ export default {
   methods: {
     //点击重置按钮，重置表单
     resetForm(forName) {
+      // Element UI 内置方法 	对整个表单进行重置
       this.$refs[forName].resetFields()
     },
     //点击登录按钮,进行预校验
     login() {
-      this.$refs.loginForm.validate(async (istrue, obj) => {
+      this.$refs.loginForm.validate(async istrue => {
         //如果预校验错误 return
         if (!istrue) {
           return
