@@ -1,19 +1,3 @@
-# vue-bigdata
-
-## Project setup
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### 关于Element-ui slot的理解
+> * https://www.cnblogs.com/aLandon/p/11592596.html
+> * https://blog.csdn.net/qq_44218173/article/details/117409592?spm=1001.2101.3001.6650.1

@@ -49,7 +49,7 @@
         </div></el-col
       >
     </el-row>
-    <!--  -->
+    <!-- 卡片区域 -->
     <el-card class="box-card" style="margin-top: 15px">
       <!-- 表格区域 -->
       <el-table :data="userList" border="">
@@ -76,8 +76,21 @@
             <el-button type="danger" icon="el-icon-delete" size="mini" @click="deleteUserInfo(slotProps.row.id)"></el-button>
             <!-- 分配角色按钮 -->
             <el-tooltip effect="dark" content="分配角色" placement="top-start" :enterable="false">
-              <el-button type="warning" icon="el-icon-star-off" size="mini"></el-button>
+              <el-button type="warning" icon="el-icon-star-off" size="mini" @click="assignRoles(slotProps.row)"></el-button>
             </el-tooltip>
+            <!-- 分配角色对话框 -->
+            <el-dialog title="分配角色" :visible.sync="setRoleDialogVisible" width="50%" @close="selectedRoleId = ''">
+              <p>当前的用户：{{ localName }}</p>
+              <p>当前的角色：{{ localRole }}</p>
+              <!-- 下拉框 -->
+              <el-select v-model="selectedRoleId" placeholder="请选择">
+                <el-option v-for="item in roleOptions" :key="item.id" :label="item.roleName" :value="item.id"> </el-option>
+              </el-select>
+              <span slot="footer" class="dialog-footer">
+                <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+                <el-button type="primary" @click="confirmRolePut">确 定</el-button>
+              </span>
+            </el-dialog>
           </template>
           <!-- 修改用户对话框 -->
           <el-dialog title="修改用户信息" :visible.sync="editDialogVisible" width="50%" append-to-body>
@@ -195,7 +208,17 @@ export default {
       //控制修改用户对话框的显示与隐藏
       editDialogVisible: false,
       //修改用户信息
-      editForm: {}
+      editForm: {},
+      setRoleDialogVisible: false,
+      //需要被分配的角色信息
+      localName: '',
+      localRole: '',
+      //所有的角色列表
+      roleOptions: [],
+      //已选中的角色的Id值
+      selectedRoleId: '',
+      //
+      roleId: ''
     }
   },
   methods: {
@@ -300,6 +323,30 @@ export default {
       } else {
         this.$message('已取消删除')
       }
+    },
+    //点击分配角色按钮
+    async assignRoles(role) {
+      this.roleId = role.id
+      this.localName = role.username
+      this.localRole = role.role_name
+      const { data: res } = await this.$http.get('roles')
+      this.roleOptions = res.data
+      this.setRoleDialogVisible = true
+    },
+    async confirmRolePut() {
+      if (this.selectedRoleId === '') {
+        return this.$message.error('请选择要分配的角色')
+      }
+      // console.log(thi)
+
+      const { data: res } = await this.$http.put('users/' + this.roleId + '/role', {
+        rid: this.selectedRoleId
+      })
+      if (res.meta.status === 200) {
+        this.$message.success('更新角色成功!')
+      }
+      this.setRoleDialogVisible = false
+      this.initUserList()
     }
   }
 }

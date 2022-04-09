@@ -6,7 +6,7 @@
         <img src="../assets/heima.png" alt="" />
         <span>管理后台</span>
       </div>
-      <el-button type="success" round @click="logout">退出</el-button>
+      <el-button type="info" round @click="logout">退出</el-button>
     </el-header>
     <el-container>
       <!-- 侧边栏 -->

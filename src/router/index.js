@@ -8,6 +8,11 @@ import Home from '@/views/Home.vue'
 import Welcome from '@/views/Welcome.vue'
 //
 import Users from '@/views/Users/Users.vue'
+//
+import Rights from '@/views/Rights/Rights.vue'
+//
+import Roles from '@/views/Roles/Roles.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -16,7 +21,9 @@ const routes = [
   {
     path: '/home', component: Home, children: [
       { path: '', component: Welcome },//开启默认子路由
-      { path: '/users', component: Users }
+      { path: '/users', component: Users },
+      { path: '/rights', component: Rights },
+      { path: '/roles', component: Roles }
     ]
   }
 ]
