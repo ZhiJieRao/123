@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import {
   Button, Form, Input, FormItem, Message, Container, Header, Aside, Main, Menu, Submenu, MenuItemGroup, MenuItem, Row, Col, Card, Table, TableColumn,
-  Breadcrumb, BreadcrumbItem, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option
+  Breadcrumb, BreadcrumbItem, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option,
+  Cascader
 } from 'element-ui'
 
 //配置Message为全局属性
@@ -34,5 +35,6 @@ Vue.use(Col),
   Vue.use(Tag),
   Vue.use(Tree),
   Vue.use(Select),
-  Vue.use(Option)
+  Vue.use(Option),
+  Vue.use(Cascader)
 

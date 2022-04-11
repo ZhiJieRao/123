@@ -12,7 +12,8 @@ import Users from '@/views/Users/Users.vue'
 import Rights from '@/views/Rights/Rights.vue'
 //
 import Roles from '@/views/Roles/Roles.vue'
-
+//
+import GoodsCate from '@/views/goods_cate/GoodsCate.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -23,7 +24,8 @@ const routes = [
       { path: '', component: Welcome },//开启默认子路由
       { path: '/users', component: Users },
       { path: '/rights', component: Rights },
-      { path: '/roles', component: Roles }
+      { path: '/roles', component: Roles },
+      { path: '/categories', component: GoodsCate }
     ]
   }
 ]
