@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+//
+import FZ from './judgeRes'
+//
 import './plugins/element.js'
 //导入全局样式
 import '../src/assets/css/global.css'
@@ -20,7 +23,8 @@ axios.interceptors.request.use(config => {
 //全局注册 vue-table-with-tree-grid
 Vue.component(ZkTable.name, ZkTable)
 Vue.config.productionTip = false
-
+//全局注册judgeRes方法
+Vue.prototype.judgeRes = FZ.judgeRes
 new Vue({
   router,
   render: h => h(App)

@@ -4,3 +4,12 @@ html,body,#app{
   padding: 0;
   height: 100%;
 }
+/* Params、GoodsCate组件用到 ，控制级联选择器的高度，如果没有会占满全屏 */
+.el-cascader-panel {
+  max-height: 200px;
+}
+
+/*  */
+.globalTop{
+  margin-top: 15px;
+}
