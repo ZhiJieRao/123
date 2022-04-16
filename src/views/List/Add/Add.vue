@@ -9,7 +9,7 @@
     <!-- 卡片区域 -->
     <el-card class="box-card globalTop">
       <!-- alert警告 -->
-      <el-alert title="消息提示的文案" type="info" center :closable="false"> </el-alert>
+      <el-alert title="请选择三级分类" type="info" center :closable="false"> </el-alert>
       <!-- 步骤条 -->
       <el-steps class="globalTop" :space="200" :active="activeIndex - 0" finish-status="success" align-center>
         <el-step title="基本信息"></el-step>
@@ -64,7 +64,6 @@
               list-type="picture"
             >
               <el-button size="small" type="primary">点击上传</el-button>
-              <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
             </el-upload>
           </el-tab-pane>
           <el-tab-pane label="商品内容" name="4">

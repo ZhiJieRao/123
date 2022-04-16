@@ -24,9 +24,10 @@
       <div class="globalTop">
         <el-table :data="GoodsList" border style="width: 100%" highlight-current-row>
           <el-table-column label="#" type="index"></el-table-column>
-          <el-table-column prop="goods_name" label="商品名称" width="670"> </el-table-column>
+          <el-table-column prop="goods_name" label="商品名称" width="500"> </el-table-column>
           <el-table-column prop="goods_price" label="商品价格(元)"> </el-table-column>
           <el-table-column prop="goods_weight" label="重量"> </el-table-column>
+          <el-table-column prop="goods_number" label="数量"> </el-table-column>
           <el-table-column label="创建时间" width="180">
             <template #default="slotProps">
               {{ slotProps.row.add_time | dataFormat }}
@@ -34,7 +35,8 @@
           </el-table-column>
           <el-table-column label="操作">
             <template #default="slotProps">
-              <el-button type="primary" icon="el-icon-star-off" circle size="mini"></el-button>
+              <!-- 编辑功能做不了 -- API文档不全 -->
+              <el-button type="primary" icon="el-icon-edit" circle size="mini" @click="addById(slotProps.row.goods_id)"></el-button>
               <el-button type="danger" icon="el-icon-delete" circle size="mini" @click="removeById(slotProps.row.goods_id)"></el-button>
             </template>
           </el-table-column>
@@ -52,6 +54,28 @@
         background
       >
       </el-pagination>
+      <!-- 修改商品 -->
+      <el-dialog title="修改商品" center :visible.sync="editDialogVisible" width="50%">
+        <!-- 表单区域 -->
+        <el-form :model="editForm" :rules="editRules" ref="ruleRef" label-width="110px" class="demo-ruleForm">
+          <el-form-item label="商品名称" prop="goods_name">
+            <el-input v-model="editForm.goods_name"></el-input>
+          </el-form-item>
+          <el-form-item label="商品价格(元)" prop="goods_price">
+            <el-input v-model="editForm.goods_price"></el-input>
+          </el-form-item>
+          <el-form-item label="商品重量" prop="goods_weight">
+            <el-input v-model="editForm.goods_weight"></el-input>
+          </el-form-item>
+          <el-form-item label="商品数量" prop="goods_number">
+            <el-input v-model="editForm.goods_number"></el-input>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="editDialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="confirmById">确 定</el-button>
+        </span>
+      </el-dialog>
     </el-card>
   </div>
 </template>
@@ -73,7 +97,26 @@ export default {
       // 总数据条数
       total: 0,
       //商品列表数据源
-      GoodsList: []
+      GoodsList: [],
+      //
+      editDialogVisible: false,
+      //商品id
+      goods_id: 0,
+      //要修改的商品信息
+      editForm: {
+        goods_cat: [1, 3, 6],
+        goods_name: '',
+        goods_price: 0,
+        goods_weight: 0,
+        goods_number: 1
+      },
+      //修改商品的验证规则
+      editRules: {
+        goods_name: [{ required: true, message: '请输入商品名称', trigger: 'blur' }],
+        goods_price: [{ required: true, message: '请输入价格(元)', trigger: 'blur' }],
+        goods_weight: [{ required: true, message: '请输入重量', trigger: 'blur' }],
+        goods_number: [{ required: true, message: '请输入数量', trigger: 'blur' }]
+      }
     }
   },
   methods: {
@@ -108,6 +151,25 @@ export default {
     async goAddPage() {
       //跳转到添加商品页面
       this.$router.push('/goods/add')
+    },
+    //获取商品信息
+    async addById(id) {
+      this.goods_id = id
+      this.editDialogVisible = true
+      const { data: res } = await this.$http.get('goods/' + id)
+      this.judgeRes(res, 200, '查询商品失败')
+      //成功
+      this.editForm.goods_name = res.data.goods_name
+      this.editForm.goods_price = res.data.goods_price
+      this.editForm.goods_weight = res.data.goods_weight
+      this.editForm.goods_number = res.data.goods_number
+    },
+    //点击确定，修改商品信息
+    async confirmById() {
+      const { data: res } = await this.$http.put('goods/' + this.goods_id, this.editForm)
+      console.log(res)
+      this.initGoodsList()
+      this.editDialogVisible = false
     }
   }
 }

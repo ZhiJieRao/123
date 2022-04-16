@@ -40,3 +40,5 @@ https://blog.csdn.net/weixin_57983561/article/details/117198822
 > * ADDFORM.goods_cat = ADDFORM.goods_cat.join(',')
 
 这样我们就可以把深拷贝的对象ADDFORM提交给服务器，而且原来的addForm.goods_cat还是数组,ADDFORM.goods_cat则变为符合要求的字符串了
+
+#### json文件一定要放到public文件夹中
