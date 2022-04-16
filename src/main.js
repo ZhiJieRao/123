@@ -6,6 +6,9 @@ import VueQuillEditor from 'vue-quill-editor'
 import 'quill/dist/quill.core.css' // import styles
 import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
+//导入echarts
+import * as echarts from 'echarts';
+
 //
 import FZ from './judgeRes'
 //
@@ -25,9 +28,11 @@ axios.interceptors.request.use(config => {
   config.headers.Authorization = window.sessionStorage.getItem('token')
   return config
 })
+
 //全局注册 vue-table-with-tree-grid
 Vue.component(ZkTable.name, ZkTable)
-Vue.config.productionTip = false
+//将echarts注册为全局对象
+Vue.prototype.$echarts = echarts
 //全局注册judgeRes方法
 Vue.prototype.judgeRes = FZ.judgeRes
 //定义一个全局过滤器
@@ -41,6 +46,10 @@ Vue.filter('dataFormat', function (origin) {
   const ss = (dt.getSeconds() + '').padStart(2, '0')
   return `${y}-${m}-${d} ${h}:${mm}:${ss}`
 })
+
+
+
+Vue.config.productionTip = false
 Vue.use(VueQuillEditor)
 new Vue({
   router,

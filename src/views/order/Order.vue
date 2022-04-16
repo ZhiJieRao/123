@@ -35,16 +35,14 @@
             </template>
           </el-table-column>
           <el-table-column label="操作">
-            <template #default="slotProps">
-              <!-- 修改地址 -->
-              <el-tooltip class="item" effect="dark" content="修改地址" placement="top" :enterable="false">
-                <el-button type="primary" icon="el-icon-edit" circle size="mini" @click="editAddress"> </el-button>
-              </el-tooltip>
-              <!-- 物流查询 -->
-              <el-tooltip class="item" effect="dark" content="物流进度" placement="top" :enterable="false">
-                <el-button type="success" icon="el-icon-location-outline" circle size="mini" @click="searchAddress"></el-button>
-              </el-tooltip>
-            </template>
+            <!-- 修改地址 -->
+            <el-tooltip class="item" effect="dark" content="修改地址" placement="top" :enterable="false">
+              <el-button type="primary" icon="el-icon-edit" circle size="mini" @click="editAddress"> </el-button>
+            </el-tooltip>
+            <!-- 物流查询 -->
+            <el-tooltip class="item" effect="dark" content="物流进度" placement="top" :enterable="false">
+              <el-button type="success" icon="el-icon-location-outline" circle size="mini" @click="searchAddress"></el-button>
+            </el-tooltip>
           </el-table-column>
         </el-table>
       </div>
