@@ -15,7 +15,11 @@ import Roles from '@/views/Roles/Roles.vue'
 //
 import GoodsCate from '@/views/goods_cate/GoodsCate.vue'
 //
-import Params from '@/Params/Params.vue'
+import Params from '@/views/Params/Params.vue'
+//
+import List from '@/views/List/List.vue'
+//
+import Add from '@/views/List/Add/Add.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -28,7 +32,11 @@ const routes = [
       { path: '/rights', component: Rights },
       { path: '/roles', component: Roles },
       { path: '/categories', component: GoodsCate },
-      { path: '/params', component: Params }
+      { path: '/params', component: Params },
+      {
+        path: '/goods', component: List,
+      },
+      { path: '/goods/add', component: Add }
     ]
   }
 ]

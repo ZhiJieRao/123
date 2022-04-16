@@ -1,5 +1,5 @@
 <template>
-  <div style="margin-top: 10px">
+  <div class="globalTop">
     <!-- 面包屑 -->
     <el-breadcrumb separator-class="el-icon-arrow-right" style="margin-bottom: 15px">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>

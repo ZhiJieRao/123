@@ -20,3 +20,23 @@
 
 ### 利用ES6封装全局方法
 > judgeRes.js
+
+### ES7 
+> padStart(),padEnd()的应用 ---定义全局过滤器 main.js
+
+### 字符串与数字相加减
+> 当字符串与数字相加时，数字转换为string类型，起到一个拼接的作用;当相减时，字符串则转换为number类型，即数字相加减。 ---Add.vue
+
+### 深拷贝&&浅拷贝
+>首先，在JS中，数据类型分为基本数据类型和引用数据类型两种，对于基本数据类型来说，它的值直接存储在栈内存中，而对于引用类型来说，它在栈内存中仅仅存储了一个引用，而真正的数据存储在堆内存中。
+https://blog.csdn.net/weixin_57983561/article/details/117198822
+> 问题:API要求的提交的goods_cat要以逗号分隔的字符串,而我创建的addForm.goods_cat是数组,如果直接把数组转为字符串,又会不符合**级联选择器**绑定v-model的属性值必须是数组规定,
+![图片](https://img-blog.csdnimg.cn/01f61b2cc5064afba25246d6677b9a66.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ2NTgzODA1,size_10,color_FFFFFF,t_70,g_se,x_16)
+
+![图片](https://img-blog.csdnimg.cn/b971c9afaa4141bfba424d69631c0d39.png?x-oss-process=image/watermark,type_d3F5LXplbmhlaQ,shadow_50,text_Q1NETiBAd2VpeGluXzQ2NTgzODA1,size_20,color_FFFFFF,t_70,g_se,x_16)
+
+> 所以我们利用深拷贝
+> * const ADDFORM = JSON.parse(JSON.stringify(this.addForm)
+> * ADDFORM.goods_cat = ADDFORM.goods_cat.join(',')
+
+这样我们就可以把深拷贝的对象ADDFORM提交给服务器，而且原来的addForm.goods_cat还是数组,ADDFORM.goods_cat则变为符合要求的字符串了

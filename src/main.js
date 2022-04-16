@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+//导入富文本编辑器
+import VueQuillEditor from 'vue-quill-editor'
+import 'quill/dist/quill.core.css' // import styles
+import 'quill/dist/quill.snow.css' // for snow theme
+import 'quill/dist/quill.bubble.css' // for bubble theme
 //
 import FZ from './judgeRes'
 //
@@ -25,6 +30,18 @@ Vue.component(ZkTable.name, ZkTable)
 Vue.config.productionTip = false
 //全局注册judgeRes方法
 Vue.prototype.judgeRes = FZ.judgeRes
+//定义一个全局过滤器
+Vue.filter('dataFormat', function (origin) {
+  const dt = new Date(origin)
+  const y = dt.getFullYear()
+  const m = (dt.getMonth() + 1 + '').padStart(2, '0')
+  const d = (dt.getDate() + '').padStart(2, '0')
+  const h = (dt.getHours() + '').padStart(2, '0')
+  const mm = (dt.getMinutes() + '').padStart(2, '0')
+  const ss = (dt.getSeconds() + '').padStart(2, '0')
+  return `${y}-${m}-${d} ${h}:${mm}:${ss}`
+})
+Vue.use(VueQuillEditor)
 new Vue({
   router,
   render: h => h(App)

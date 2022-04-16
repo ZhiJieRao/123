@@ -9,7 +9,20 @@ html,body,#app{
   max-height: 200px;
 }
 
-/*  */
+/* 为以后要用到margin-top封装样式 */
 .globalTop{
   margin-top: 15px;
+}
+
+/* 隐藏滚动条 */
+.el-main{
+  overflow: visible;
+}
+
+.el-card__body{
+  padding: 10px 20px 20px 20px;
+}
+
+.ql-container.ql-snow{
+  min-height: 300px;
 }

@@ -2,7 +2,7 @@ import Vue from 'vue'
 import {
   Button, Form, Input, FormItem, Message, Container, Header, Aside, Main, Menu, Submenu, MenuItemGroup, MenuItem, Row, Col, Card, Table, TableColumn,
   Breadcrumb, BreadcrumbItem, Switch, Tooltip, Pagination, Dialog, MessageBox, Tag, Tree, Select, Option,
-  Cascader, Alert, Tabs, TabPane
+  Cascader, Alert, Tabs, TabPane, Steps, Step, CheckboxGroup, Checkbox, Upload
 } from 'element-ui'
 
 //配置Message为全局属性
@@ -39,5 +39,9 @@ Vue.use(Col),
   Vue.use(Cascader),
   Vue.use(Alert),
   Vue.use(Tabs),
-  Vue.use(TabPane)
-
+  Vue.use(TabPane),
+  Vue.use(Steps),
+  Vue.use(Step),
+  Vue.use(CheckboxGroup),
+  Vue.use(Checkbox),
+  Vue.use(Upload)
