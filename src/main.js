@@ -8,6 +8,9 @@ import 'quill/dist/quill.snow.css' // for snow theme
 import 'quill/dist/quill.bubble.css' // for bubble theme
 //导入echarts
 import * as echarts from 'echarts';
+//导入NProgress包和样式表
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 //
 import FZ from './judgeRes'
@@ -25,7 +28,15 @@ Vue.prototype.$http = axios
 axios.defaults.baseURL = "http://127.0.0.1:8888/api/private/v1/"
 //通过axios请求拦截器添加token，保证拥有获取数据的权限
 axios.interceptors.request.use(config => {
+  //展示进度条
+  NProgress.start();
   config.headers.Authorization = window.sessionStorage.getItem('token')
+  return config
+})
+
+//response拦截器
+axios.interceptors.response.use(config => {
+  NProgress.done();
   return config
 })
 
@@ -35,6 +46,7 @@ Vue.component(ZkTable.name, ZkTable)
 Vue.prototype.$echarts = echarts
 //全局注册judgeRes方法
 Vue.prototype.judgeRes = FZ.judgeRes
+
 //定义一个全局过滤器
 Vue.filter('dataFormat', function (origin) {
   const dt = new Date(origin)
