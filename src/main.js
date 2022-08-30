@@ -25,8 +25,13 @@ import ZkTable from 'vue-table-with-tree-grid'
 //配置axios
 import axios from 'axios'
 Vue.prototype.$http = axios
+// 配置默认值
 axios.defaults.baseURL = "http://127.0.0.1:8888/api/private/v1/"
 //通过axios请求拦截器添加token，保证拥有获取数据的权限
+/* 
+  在发送请求的时候会优先调用use中的回调函数，做一下预处理
+  请求拦截器相当一个预处理的过程
+*/
 axios.interceptors.request.use(config => {
   //展示进度条
   NProgress.start();
@@ -34,7 +39,7 @@ axios.interceptors.request.use(config => {
   return config
 })
 
-//response拦截器
+//response拦截器(在响应之后对数据进行一些处理)
 axios.interceptors.response.use(config => {
   NProgress.done();
   return config

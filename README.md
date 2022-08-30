@@ -53,7 +53,7 @@ https://blog.csdn.net/weixin_57983561/article/details/117198822
 这样我们就可以把深拷贝的对象ADDFORM提交给服务器，而且原来的addForm.goods_cat还是数组,ADDFORM.goods_cat则变为符合要求的字符串了
 
 ***
-如果想要用axios来获取本地的json文件则，则此json==文件一定要放到public文件夹中==
+如果想要用axios来获取本地的json文件则，则此json==文件一定要放到public文件夹中
   -- Order.vue
 
 > * 扩展运算符合并对象，*obj = {...obj1,...obj2}* 合并两个对象的相同属性，以obj2为准，不同属性会进行拼接。
