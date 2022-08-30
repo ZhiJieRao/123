@@ -16,6 +16,7 @@ const router = new VueRouter({
   routes
 })
 
+// 全局前置导航守卫 初始化的时候、每次路由切换之前被调用
 router.beforeEach((to, from, next) => {
   if (to.path == '/login') return next()
   const tokenStr = sessionStorage.getItem('token')
