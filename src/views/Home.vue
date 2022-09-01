@@ -13,7 +13,16 @@
       <el-aside :width="isCol ? '64px' : '200px'">
         <el-button type="primary" @click="isCol = !isCol" style="width: 100%">|||</el-button>
         <!--:default-active="$route.path" 使浏览器刷新会使对应的二级菜单样式激活  -->
-        <el-menu :default-active="$route.path" class="el-menu-vertical-demo" unique-opened :collapse="isCol" router background-color="rgb(49, 55, 67)" text-color="#fff" active-text-color="#ffd04b">
+        <el-menu
+          :default-active="$route.path"
+          class="el-menu-vertical-demo"
+          unique-opened
+          :collapse="isCol"
+          router
+          background-color="rgb(49, 55, 67)"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+        >
           <!-- 一级菜单 -->
           <!-- index是唯一标识,如果index相同 那么展开某个列表 就会造成所有列表都展开-->
           <el-submenu :index="item.id + ''" v-for="item in menus" :key="item.id">
@@ -62,7 +71,6 @@ export default {
       isCol: false
     }
   },
-  computed: {},
   methods: {
     // 点击退出按钮,清空sessionStorage的token
     logout() {
