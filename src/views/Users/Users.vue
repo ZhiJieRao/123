@@ -214,6 +214,7 @@ export default {
     async switchState(val) {
       const { data: res } = await this.$http.put(`users/${val.id}/state/${val.mg_state}`)
       if (res.meta.status != 200) {
+        val.mg_state = !val.mg_state
         this.$message.error('更新用户状态失败')
       }
     },
