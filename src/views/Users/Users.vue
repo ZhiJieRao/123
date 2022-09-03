@@ -52,7 +52,7 @@
     <!--  -->
     <el-card class="box-card" style="margin-top: 15px">
       <!-- 表格区域 -->
-      <el-table :data="userList" border="">
+      <el-table :data="userList">
         <el-table-column label="#" type="index"></el-table-column>
         <el-table-column label="姓名" prop="username"> </el-table-column>
         <el-table-column label="日期" prop="create_time"> </el-table-column>
@@ -63,7 +63,8 @@
           <!-- slotProps.row row是内置属性 意思是拿到当前行 -->
           <template #default="slotProps">
             <!-- {{ slotProps.row }} -->
-            <el-switch v-model="slotProps.row.mg_state" active-color="#13ce66" inactive-color="#ff4949" @change="switchState(slotProps.row)"> </el-switch>
+            <el-switch v-model="slotProps.row.mg_state" active-color="#13ce66" inactive-color="#ff4949" @change="switchState(slotProps.row)">
+            </el-switch>
           </template>
         </el-table-column>
         <el-table-column label="管理员" prop="role_name"> </el-table-column>
@@ -79,28 +80,28 @@
               <el-button type="warning" icon="el-icon-star-off" size="mini"></el-button>
             </el-tooltip>
           </template>
-          <!-- 修改用户对话框 -->
-          <el-dialog title="修改用户信息" :visible.sync="editDialogVisible" width="50%" append-to-body>
-            <el-form :model="editForm" :rules="rules" ref="editFormRef" label-width="100px" class="demo-ruleForm">
-              <!-- 用户名 -->
-              <el-form-item label="用户名" prop="username">
-                <el-input v-model="editForm.username" disabled></el-input>
-              </el-form-item>
-              <!-- 邮箱 -->
-              <el-form-item label="邮箱" prop="email">
-                <el-input v-model="editForm.email"></el-input>
-              </el-form-item>
-              <!-- 手机号码 -->
-              <el-form-item label="手机号码" prop="mobile">
-                <el-input v-model="editForm.mobile"></el-input>
-              </el-form-item>
-            </el-form>
-            <span slot="footer" class="dialog-footer">
-              <el-button @click="editCancel">取 消</el-button>
-              <el-button type="primary" @click="editConfirm(editForm.id)">确 定</el-button>
-            </span>
-          </el-dialog>
         </el-table-column>
+        <!-- 修改用户对话框 -->
+        <el-dialog title="修改用户信息" :visible.sync="editDialogVisible" width="50%" append-to-body>
+          <el-form :model="editForm" :rules="rules" ref="editFormRef" label-width="100px" class="demo-ruleForm">
+            <!-- 用户名 -->
+            <el-form-item label="用户名" prop="username">
+              <el-input v-model="editForm.username" disabled></el-input>
+            </el-form-item>
+            <!-- 邮箱 -->
+            <el-form-item label="邮箱" prop="email">
+              <el-input v-model="editForm.email"></el-input>
+            </el-form-item>
+            <!-- 手机号码 -->
+            <el-form-item label="手机号码" prop="mobile">
+              <el-input v-model="editForm.mobile"></el-input>
+            </el-form-item>
+          </el-form>
+          <span slot="footer" class="dialog-footer">
+            <el-button @click="editCancel">取 消</el-button>
+            <el-button type="primary" @click="editConfirm(editForm.id)">确 定</el-button>
+          </span>
+        </el-dialog>
       </el-table>
       <!-- 分页区域 -->
       <div class="block">
@@ -127,7 +128,8 @@ export default {
   data() {
     //定义邮箱的验证规则
     const checkEmail = (rule, value, callback) => {
-      const emailRules = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+      const emailRules =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
       if (emailRules.test(value)) {
         return callback()
       }

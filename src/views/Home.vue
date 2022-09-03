@@ -26,7 +26,7 @@
           <!-- 一级菜单 -->
           <!-- index是唯一标识,如果index相同 那么展开某个列表 就会造成所有列表都展开-->
           <el-submenu :index="item.id + ''" v-for="item in menus" :key="item.id">
-            <template slot="title">
+            <template v-slot:title>
               <!-- 图标 -->
               <i :class="[iconObj[item.id]]"></i>
               <span>{{ item.authName }}</span>
