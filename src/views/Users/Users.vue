@@ -81,33 +81,34 @@
             </el-tooltip>
           </template>
         </el-table-column>
-        <!-- 修改用户对话框 -->
-        <el-dialog title="修改用户信息" :visible.sync="editDialogVisible" width="50%" append-to-body>
-          <el-form :model="editForm" :rules="rules" ref="editFormRef" label-width="100px" class="demo-ruleForm">
-            <!-- 用户名 -->
-            <el-form-item label="用户名" prop="username">
-              <el-input v-model="editForm.username" disabled></el-input>
-            </el-form-item>
-            <!-- 邮箱 -->
-            <el-form-item label="邮箱" prop="email">
-              <el-input v-model="editForm.email"></el-input>
-            </el-form-item>
-            <!-- 手机号码 -->
-            <el-form-item label="手机号码" prop="mobile">
-              <el-input v-model="editForm.mobile"></el-input>
-            </el-form-item>
-          </el-form>
-          <span slot="footer" class="dialog-footer">
-            <el-button @click="editCancel">取 消</el-button>
-            <el-button type="primary" @click="editConfirm(editForm.id)">确 定</el-button>
-          </span>
-        </el-dialog>
       </el-table>
+      <!-- 修改用户对话框 -->
+      <el-dialog title="修改用户信息" :visible.sync="editDialogVisible" width="50%">
+        <el-form :model="editForm" :rules="rules" ref="editFormRef" label-width="100px" class="demo-ruleForm">
+          <!-- 用户名 -->
+          <el-form-item label="用户名" prop="username">
+            <el-input v-model="editForm.username" disabled></el-input>
+          </el-form-item>
+          <!-- 邮箱 -->
+          <el-form-item label="邮箱" prop="email">
+            <el-input v-model="editForm.email"></el-input>
+          </el-form-item>
+          <!-- 手机号码 -->
+          <el-form-item label="手机号码" prop="mobile">
+            <el-input v-model="editForm.mobile"></el-input>
+          </el-form-item>
+        </el-form>
+        <span slot="footer" class="dialog-footer">
+          <el-button @click="editCancel">取 消</el-button>
+          <el-button type="primary" @click="editConfirm(editForm.id)">确 定</el-button>
+        </span>
+      </el-dialog>
       <!-- 分页区域 -->
       <div class="block">
         <el-pagination
           @size-change="handleSizeChange"
           @current-change="handleCurrentChange"
+          :current-page="params.pagenum"
           :page-sizes="[1, 2, 5]"
           :page-size="params.pagesize"
           layout="total, sizes, prev, pager, next, jumper"
@@ -218,12 +219,12 @@ export default {
         this.$message.error('更新用户状态失败')
       }
     },
-    //监听pagesize改变的事件
+    //监听pagesize改变的事件,当每页显示的记录数发生改变了，重新获取数据
     handleSizeChange(val) {
       this.params.pagesize = val
       this.initUserList()
     },
-    //监听pagenum改变的事件
+    //监听pagenum改变的事件，当页码值发生改变了，重新获取数据
     handleCurrentChange(val) {
       this.params.pagenum = val
       this.initUserList()
@@ -283,6 +284,7 @@ export default {
     },
     // 点击删除按钮 删除用户信息
     async deleteUserInfo(id) {
+      console.log(this.params.pagenum)
       const msgConfirm = await this.$confirm('此操作将永久删除该用户, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
