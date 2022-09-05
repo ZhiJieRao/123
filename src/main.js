@@ -3,19 +3,19 @@ import App from './App.vue'
 import router from './router'
 //导入富文本编辑器
 import VueQuillEditor from 'vue-quill-editor'
-import 'quill/dist/quill.core.css' // import styles
-import 'quill/dist/quill.snow.css' // for snow theme
-import 'quill/dist/quill.bubble.css' // for bubble theme
+// import 'quill/dist/quill.core.css' // import styles
+// import 'quill/dist/quill.snow.css' // for snow theme
+// import 'quill/dist/quill.bubble.css' // for bubble theme
 //导入echarts
 import * as echarts from 'echarts';
 //导入NProgress包和样式表
 import NProgress from 'nprogress'
-import 'nprogress/nprogress.css'
+// import 'nprogress/nprogress.css'
 
 //
 import FZ from './judgeRes'
 //
-import './plugins/element.js'
+// import './plugins/element.js'
 //导入全局样式
 import '../src/assets/css/global.css'
 //引入图标样式
